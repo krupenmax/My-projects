@@ -1,0 +1,13 @@
+:host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    height: 100%;
+}
+
+#map {
+    width: 90%;
+    height: 90%;
+    border: solid 5px #1e8449;
+}
