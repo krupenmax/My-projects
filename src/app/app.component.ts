@@ -1,5 +1,7 @@
-import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, ViewChild, ViewContainerRef } from "@angular/core";
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, OnInit, ViewChild, ViewContainerRef } from "@angular/core";
 import { Component } from "@angular/core";
+import { Subject } from "rxjs";
+import { DataService } from "./data.service";
 import { MapComponent } from "./map/map.component";
 import { pet } from "./pet";
 
@@ -9,13 +11,12 @@ import { pet } from "./pet";
   templateUrl: "./app.component.html",
 })
 
-export class AppComponent {
-  public pets?: pet[];
-
+export class AppComponent implements OnInit {
+  public pets: Subject<pet[]> = new Subject();
+  public petArray: pet[] = new Array();
   public title = "object-map-app";
   public isPopUp = false;
-  public constructor(private cdr: ChangeDetectorRef) {
-    this.pets = new Array();
+  public constructor(private cdr: ChangeDetectorRef, private dataService: DataService) {
   }
 
   public PopUp(isPop: boolean): void {
@@ -23,7 +24,12 @@ export class AppComponent {
   }
 
   public addPet(newPet: pet): void {
-    this.pets?.push(newPet);
+    this.petArray.push(newPet);
+    this.dataService.addPets(this.petArray);
     this.cdr.detectChanges();
+  }
+
+  public ngOnInit(): void {
+    console.log();
   }
 }
