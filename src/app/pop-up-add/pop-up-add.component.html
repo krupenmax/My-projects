@@ -1,1 +1,9 @@
-<p>pop-up-add works!</p>
+<form [formGroup]="addForm" class="addForm">
+    <label>Name: </label>
+    <input formControlName="name">
+    <label>Y: </label>
+    <input formControlName="x">
+    <label>X: </label>
+    <input formControlName="y">
+    <button>Add</button>
+</form>

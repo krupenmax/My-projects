@@ -7,4 +7,12 @@ import { Component } from "@angular/core";
 })
 export class AppComponent {
   public title = "object-map-app";
+  public isPopUp = false;
+  public constructor() {
+
+  }
+
+  public PopUp(isPop: boolean) {
+    this.isPopUp = isPop;
+  }
 }

@@ -1,0 +1,80 @@
+:host {
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid 5px #1e8449;
+    border-radius: 15px;
+    padding: 50px;
+    background-color: #fff;
+}
+
+.addForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.addForm button {
+  backface-visibility: hidden;
+  background: #1e8449;
+  border: 0;
+  border-radius: .375rem;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  padding: 1rem 1.25rem;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transform: translateZ(0) scale(1);
+  transition: transform .2s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin: 10px;
+  font-family: Circular,Helvetica,sans-serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: -.01em;
+  line-height: 1.3;
+}
+
+.addForm button:disabled {
+  color: #787878;
+  cursor: auto;
+}
+
+.addForm button:not(:disabled):hover {
+  transform: scale(1.05);
+}
+
+.addForm button:not(:disabled):hover:active {
+  transform: scale(1.05) translateY(.125rem);
+}
+
+    .addForm button:focus {
+  outline: 0 solid transparent;
+}
+
+.addForm button:focus:before {
+  border-width: .125rem;
+  content: "";
+  left: calc(-1*.375rem);
+  pointer-events: none;
+  position: absolute;
+  top: calc(-1*.375rem);
+  transition: border-radius;
+  user-select: none;
+}
+
+.addForm button:focus:not(:focus-visible) {
+  outline: 0 solid transparent;
+}
+
+.addForm button:not(:disabled):active {
+  transform: translateY(.125rem);
+}

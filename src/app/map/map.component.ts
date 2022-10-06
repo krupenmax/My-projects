@@ -23,6 +23,11 @@ export class MapComponent implements OnInit {
       maxZoom: 18,
       minZoom: 10,
     });
+    const icon = L.icon({
+      iconSize: [45, 63],
+      iconUrl: "../../assets/Tiger.png",
+    });
+    const marker = L.marker([54.0120607, 27.6808058], { icon: icon }).addTo(this.map);
     tiles.addTo(this.map);
   }
 
