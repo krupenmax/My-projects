@@ -1,6 +1,6 @@
 export type pet = {
-  name: string;
-  x: number;
-  y: number;
-  image: string;
+  name: string | null;
+  x: number | null;
+  y: number | null ;
+  image: string| null;
 };

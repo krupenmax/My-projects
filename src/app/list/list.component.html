@@ -4,7 +4,7 @@
 </div>
 <div class="pets-area">
     <div class="pet-div" *ngFor="let pet of pets">
-        <img [src]="pet.image">
+        <img src="{{pet.image}}.jpg">
         <div class="description">
             Name: {{pet.name}}; Position: {{pet.x}}, {{pet.y}}
         </div>

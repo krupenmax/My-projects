@@ -4,6 +4,7 @@
     align-items: center;  
     height: 100%;
     flex-direction: column;
+    font-family: Roboto;
 }
 
 .add-area {
@@ -34,9 +35,9 @@
   -webkit-user-select: none;
   touch-action: manipulation;
   margin: 10px;
-  font-family: Circular,Helvetica,sans-serif;
+  font-family: Roboto;
   font-size: 1.125rem;
-  font-weight: 700;
+  font-weight: 400;
   letter-spacing: -.01em;
   line-height: 1.3;
 }

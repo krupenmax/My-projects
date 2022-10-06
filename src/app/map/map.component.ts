@@ -1,5 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { AfterContentChecked, ChangeDetectorRef, Component, DoCheck, Input, OnChanges, OnInit } from "@angular/core";
 import * as L from "leaflet";
+import { pet } from "../pet";
 
 @Component({
   selector: "app-map",
@@ -7,12 +8,13 @@ import * as L from "leaflet";
   templateUrl: "./map.component.html",
 })
 
-export class MapComponent implements OnInit {
+export class MapComponent implements OnInit{
   private map?: L.Map;
   private centroid: L.LatLngExpression = [54.012152, 27.679890];
-  public constructor() { }
+  @Input() public pets?: pet[];
+  public constructor(private cdr: ChangeDetectorRef) { }
 
-  private initMap(): void {
+  public initMap(): void {
     this.map = L.map("map", {
       center: this.centroid,
       zoom: 12,
@@ -23,17 +25,21 @@ export class MapComponent implements OnInit {
       maxZoom: 18,
       minZoom: 10,
     });
-    const icon = L.icon({
-      iconSize: [45, 63],
-      iconUrl: "../../assets/Tiger.png",
-    });
-    const marker = L.marker([54.0120607, 27.6808058], { icon: icon }).addTo(this.map);
     tiles.addTo(this.map);
+  }
+
+  public a(): void {
+    if (this.pets?.length != 0) {
+      let img = this.pets?.[this.pets?.length - 1].image;
+      const icon = L.icon({
+        iconSize: [45, 63],
+        iconUrl: "../../assets/" + img + ".png",
+      });
+      let marker = L.marker([54.0120607, 27.6808058], { icon: icon }).addTo(this.map as L.Map);
+    }
   }
 
   public ngOnInit(): void {
     this.initMap();
   }
-
-
 }

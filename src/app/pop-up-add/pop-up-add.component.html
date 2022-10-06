@@ -1,9 +1,51 @@
-<form [formGroup]="addForm" class="addForm">
-    <label>Name: </label>
-    <input formControlName="name">
-    <label>Y: </label>
-    <input formControlName="x">
-    <label>X: </label>
-    <input formControlName="y">
-    <button>Add</button>
+<form [formGroup]="addForm" class="addForm" autocomplete="off">
+    <div class="page">
+        <div class="field field_v2">
+          <label for="first-name" class="ha-screen-reader">Name</label>
+          <input id="first-name" class="field__input" placeholder="e.g. Cutie" formControlName="name">
+          <span class="field__label-wrap" aria-hidden="true">
+            <span class="field__label">Name</span>
+          </span>
+        </div>
+        <div *ngIf="addForm.get('name')?.errors?.['required'] && addForm.get('name')?.touched" class="error">Field required</div>
+        <div *ngIf="addForm.get('name')?.errors?.['maxlength']" class="error">Maximum length - 60</div>  
+        <div class="field field_v2">
+          <label for="last-name" class="ha-screen-reader">X</label>
+          <input id="last-name"  class="field__input" placeholder="e.g. 20 50" formControlName="x">
+          <span class="field__label-wrap" aria-hidden="true">
+            
+            <span class="field__label">X-Coordinates</span>
+          </span>
+        </div>   
+        <div *ngIf="addForm.get('x')?.errors?.['invalidInput'] && addForm.get('x')?.touched && !addForm.get('x')?.errors?.['required']" class="error">Field must contain only numbers</div> 
+        <div *ngIf="addForm.get('x')?.errors?.['invalidMaxLength'] && !addForm.get('x')?.errors?.['required']" class="error">Maximum length: 180</div> 
+        <div *ngIf="addForm.get('x')?.errors?.['invalidMinLength'] && !addForm.get('x')?.errors?.['required'] " class="error">Minimum length: -180</div> 
+        <div *ngIf="addForm.get('x')?.errors?.['required'] && addForm.get('x')?.touched" class="error">Field required</div> 
+        <div class="field field_v2">
+            <label for="last-name" class="ha-screen-reader">Y</label>
+            <input id="last-name"  class="field__input" placeholder="e.g. 50 20" formControlName="y">
+            <span class="field__label-wrap" aria-hidden="true">
+            <span class="field__label">Y-Coordinates</span>
+            </span>
+        </div>    
+        <div *ngIf="addForm.get('y')?.errors?.['invalidInput'] && addForm.get('y')?.touched && !addForm.get('y')?.errors?.['required']" class="error">Field must contain only numbers</div> 
+        <div *ngIf="addForm.get('y')?.errors?.['invalidMaxLength'] && !addForm.get('y')?.errors?.['required']" class="error">Maximum length: 180</div> 
+        <div *ngIf="addForm.get('y')?.errors?.['invalidMinLength'] && !addForm.get('y')?.errors?.['required'] " class="error">Minimum length: -180</div> 
+        <div *ngIf="addForm.get('y')?.errors?.['required'] && addForm.get('y')?.touched" class="error">Field required</div> 
+    </div>
+    <button (click)="popUp()">Select avatar</button>
+
+
+    <div class="pop-up-image" *ngIf="isAvatarPopUp">
+        <button (click)="addAvatar('../../assets/Doggy')"><img src="../../assets/Doggy.jpg" width="100" height="100"></button>
+        <button (click)="addAvatar('../../assets/Kitty')"><img src="../../assets/Kitty.jpg" width="100" height="100"></button>
+        <button (click)="addAvatar('../../assets/Gorilla')"><img src="../../assets/Gorilla.jpg" width="100" height="100"></button>
+        <button (click)="addAvatar('../../assets/Lion')"><img src="../../assets/Lion.jpg" width="100" height="100"></button>
+        <button (click)="addAvatar('../../assets/Koala')"><img src="../../assets/Koala.jpg" width="100" height="100"></button>
+        <button (click)="addAvatar('../../assets/Bunny')"><img src="../../assets/Bunny.jpg" width="100" height="100"></button>
+        <button (click)="addAvatar('../../assets/Tiger')"><img src="../../assets/Tiger.jpg" width="100" height="100"></button>
+        <button (click)="addAvatar('../../assets/Fox')"><img src="../../assets/Fox.jpg" width="100" height="100"></button>
+    </div>
+
+    <button (click)="addPet()">Add</button>
 </form>
