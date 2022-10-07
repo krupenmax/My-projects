@@ -1,10 +1,11 @@
-import { ChangeDetectorRef, Component, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from "@angular/core";
 import * as L from "leaflet";
 import { Subject } from "rxjs";
 import { DataService } from "../data.service";
-import { pet } from "../pet";
+import { Pet } from "../pet";
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: "app-map",
   styleUrls: ["./map.component.scss"],
   templateUrl: "./map.component.html",
@@ -13,10 +14,10 @@ import { pet } from "../pet";
 export class MapComponent implements OnInit{
   private map?: L.Map;
   private centroid: L.LatLngExpression = [54.012152, 27.679890];
-  public petSubject: Subject<pet[]> = this.dataService.pets;
+  public petSubject: Subject<Pet[]> = this.dataService.pets;
   public centerSubject: Subject<number[]> = this.dataService.center;
-  public pets: pet[] = new Array();
-  public constructor(private cdr: ChangeDetectorRef, private dataService: DataService) {
+  public pets: Pet[] = new Array();
+  public constructor(private readonly dataService: DataService) {
   }
 
   public initMap(): void {
@@ -33,10 +34,10 @@ export class MapComponent implements OnInit{
   }
 
   public addMarker(): void {
-    if (this.pets?.length != 0) {
-      let img = this.pets[this.pets?.length - 1].image;
-      let x = this.pets[this.pets?.length - 1].x as number;
-      let y = this.pets[this.pets?.length - 1].y as number;
+    if (this.pets.length !== 0) {
+      let img = this.pets[this.pets.length - 1].image;
+      let x = this.pets[this.pets.length - 1].x as number;
+      let y = this.pets[this.pets.length - 1].y as number;
       const icon = L.icon({
         iconSize: [45, 63],
         iconUrl: "../../assets/" + img + ".png",

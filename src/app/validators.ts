@@ -1,18 +1,11 @@
 import { AbstractControl } from "@angular/forms";
 
 export function validateOnlyNumbers(control: AbstractControl) {
-  if (!isNaN(control.value) || control.value === "") {
+  console.log((Number.parseFloat(control.value)));
+  if ((Number.parseFloat(control.value)).toString() === control.value) {
     return null;
   }
   else {
-    return { invalidInput: true };
+    return { validateOnlyNumbers: true };
   }
-}
-
-export function validateCoordinatesMax(control: AbstractControl) {
-  return control.value > 180 ? { invalidMaxLength: true } : null;
-}
-
-export function validateCoordinatesMin(control: AbstractControl) {
-  return control.value < -180 ? { invalidMinLength: true } : null;
 }

@@ -1,16 +1,16 @@
 import { Injectable } from "@angular/core";
 import { Subject } from "rxjs";
-import { pet } from "./pet";
+import { Pet } from "./pet";
 @Injectable({
   providedIn: "root",
 })
 export class DataService {
-  public pets: Subject<pet[]> = new Subject();
+  public pets: Subject<Pet[]> = new Subject();
   public center: Subject<number[]> = new Subject();
 
   public constructor() { }
 
-  public addPets(pets: pet[]): void {
+  public addPets(pets: Pet[]): void {
     this.pets.next(pets);
   }
 

@@ -1,16 +1,21 @@
 import { Injectable } from "@angular/core";
-import { pet } from "./pet";
+import { Pet } from "./pet";
 
 @Injectable({
   providedIn: "root",
 })
 export class PopUpService {
   public isPopUp = false;
-  public pet?: pet;
+  public pet: Pet = {
+    image: "",
+    name: "",
+    x: 0,
+    y: 0,
+  };
   public constructor() { }
 
-  public addPet(name: string | null, x: number | null, y: number | null, imgUrl: string | null): pet {
-    let pet: pet = {
+  public addPet(name: string, x: number, y: number, imgUrl: string): Pet {
+    let pet: Pet = {
       image: imgUrl,
       name: name,
       x: x,

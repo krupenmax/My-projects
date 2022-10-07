@@ -11,26 +11,26 @@
         <div *ngIf="addForm.get('name')?.errors?.['maxlength']" class="error">Maximum length - 60</div>  
         <div class="field field_v2">
           <label for="last-name" class="ha-screen-reader">X</label>
-          <input id="last-name"  class="field__input" placeholder="e.g. 20 50" formControlName="x">
+          <input id="last-name"  class="field__input" placeholder="e.g. 20" formControlName="x">
           <span class="field__label-wrap" aria-hidden="true">
             
             <span class="field__label">X-Coordinates</span>
           </span>
         </div>   
-        <div *ngIf="addForm.get('x')?.errors?.['invalidInput'] && addForm.get('x')?.touched && !addForm.get('x')?.errors?.['required']" class="error">Field must contain only numbers</div> 
-        <div *ngIf="addForm.get('x')?.errors?.['invalidMaxLength'] && !addForm.get('x')?.errors?.['required']" class="error">Maximum value: 180</div> 
-        <div *ngIf="addForm.get('x')?.errors?.['invalidMinLength'] && !addForm.get('x')?.errors?.['required'] " class="error">Minimum value: -180</div> 
+        <div *ngIf="addForm.get('x')?.errors?.['validateOnlyNumbers'] && addForm.get('x')?.touched && !addForm.get('x')?.errors?.['required']" class="error">Field must contain only numbers</div> 
+        <div *ngIf="addForm.get('x')?.errors?.['max'] && !addForm.get('x')?.errors?.['required']" class="error">Maximum value: 180</div> 
+        <div *ngIf="addForm.get('x')?.errors?.['min'] && !addForm.get('x')?.errors?.['required'] " class="error">Minimum value: -180</div> 
         <div *ngIf="addForm.get('x')?.errors?.['required'] && addForm.get('x')?.touched" class="error">Field required</div> 
         <div class="field field_v2">
             <label for="last-name" class="ha-screen-reader">Y</label>
-            <input id="last-name"  class="field__input" placeholder="e.g. 50 20" formControlName="y">
+            <input id="last-name"  class="field__input" placeholder="e.g. 50" formControlName="y" type="number">
             <span class="field__label-wrap" aria-hidden="true">
             <span class="field__label">Y-Coordinates</span>
             </span>
         </div>    
-        <div *ngIf="addForm.get('y')?.errors?.['invalidInput'] && addForm.get('y')?.touched && !addForm.get('y')?.errors?.['required']" class="error">Field must contain only numbers</div> 
-        <div *ngIf="addForm.get('y')?.errors?.['invalidMaxLength'] && !addForm.get('y')?.errors?.['required']" class="error">Maximum value: 180</div> 
-        <div *ngIf="addForm.get('y')?.errors?.['invalidMinLength'] && !addForm.get('y')?.errors?.['required'] " class="error">Minimum value: -180</div> 
+        <div *ngIf="addForm.get('y')?.errors?.['validateOnlyNumbers'] && addForm.get('y')?.touched && !addForm.get('y')?.errors?.['required']" class="error">Field must contain only numbers</div> 
+        <div *ngIf="addForm.get('y')?.errors?.['max'] && !addForm.get('y')?.errors?.['required']" class="error">Maximum value: 180</div> 
+        <div *ngIf="addForm.get('y')?.errors?.['min'] && !addForm.get('y')?.errors?.['required'] " class="error">Minimum value: -180</div> 
         <div *ngIf="addForm.get('y')?.errors?.['required'] && addForm.get('y')?.touched" class="error">Field required</div> 
     </div>
     <button (click)="popUp()">Select avatar</button>

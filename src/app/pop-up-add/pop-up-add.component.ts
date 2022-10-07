@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Output } from "@angular/core";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { pet } from "../pet";
+import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { Pet } from "../pet";
 import { PopUpService } from "../pop-up.service";
-import { validateCoordinatesMax, validateCoordinatesMin, validateOnlyNumbers } from "../validators";
+import { validateOnlyNumbers } from "../validators";
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -11,17 +11,18 @@ import { validateCoordinatesMax, validateCoordinatesMin, validateOnlyNumbers } f
   templateUrl: "./pop-up-add.component.html",
 })
 export class PopUpAddComponent {
-  @Output() public pet = new EventEmitter<pet>;
+  @Output() public pet = new EventEmitter<Pet>;
   @Output() public isPopUp = new EventEmitter<boolean>;
+  public fb = new FormBuilder().nonNullable;
   public addForm = new FormGroup({
-    name: new FormControl("", [Validators.required, Validators.maxLength(60)]),
-    x: new FormControl(<number | null> null, [validateOnlyNumbers, Validators.required, validateCoordinatesMax, validateCoordinatesMin]),
-    y: new FormControl(<number | null> null, [validateOnlyNumbers, Validators.required, validateCoordinatesMax, validateCoordinatesMin]),
+    name: this.fb.control("", [Validators.required, Validators.maxLength(60)]),
+    x: this.fb.control(<number | null> null, [validateOnlyNumbers, Validators.required, Validators.max(180), Validators.min(-180)]),
+    y: this.fb.control(<number | null> null, [validateOnlyNumbers, Validators.required, Validators.max(180), Validators.min(-180)]),
   });
   public isAvatarPopUp: boolean = false;
   public avatarUrl: string = "";
 
-  public constructor(private cdr: ChangeDetectorRef, private popUpService: PopUpService) { }
+  public constructor(private readonly cdr: ChangeDetectorRef, private readonly popUpService: PopUpService) { }
 
   public popUp(): void {
     this.isAvatarPopUp = true;
@@ -35,8 +36,8 @@ export class PopUpAddComponent {
   }
 
   public addPet(): void {
-    if (this.addForm.valid && this.avatarUrl != "") {
-      this.pet.emit(this.popUpService.addPet(this.addForm.controls["name"].value, this.addForm.controls["x"].value, this.addForm.controls["y"].value, this.avatarUrl));
+    if (this.addForm.valid && this.avatarUrl !== "") {
+      this.pet.emit(this.popUpService.addPet(this.addForm.controls["name"].value as string, this.addForm.controls["x"].value as number, this.addForm.controls["y"].value as number, this.avatarUrl));
       this.isPopUp.emit(false);
     }
   }

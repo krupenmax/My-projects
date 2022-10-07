@@ -1,18 +1,18 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { ChangeDetectionStrategy } from "@angular/core";
 import { DataService } from "../data.service";
-import { pet } from "../pet";
+import { Pet } from "../pet";
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.Default,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: "app-list",
   styleUrls: ["./list.component.scss"],
   templateUrl: "./list.component.html",
 })
 export class ListComponent {
   @Output() public isPopUp = new EventEmitter<boolean>();
-  @Input() public pets: pet[] = new Array(); ;
-  public constructor(private dataService: DataService) {
+  @Input() public pets: Pet[] = [];
+  public constructor(private readonly dataService: DataService) {
   }
 
   public addPet(): void {
