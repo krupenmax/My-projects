@@ -1,8 +1,7 @@
-import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, OnInit, ViewChild, ViewContainerRef } from "@angular/core";
+import { ChangeDetectorRef, OnInit } from "@angular/core";
 import { Component } from "@angular/core";
 import { Subject } from "rxjs";
 import { DataService } from "./data.service";
-import { MapComponent } from "./map/map.component";
 import { pet } from "./pet";
 
 @Component({

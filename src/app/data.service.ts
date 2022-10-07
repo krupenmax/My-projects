@@ -6,8 +6,15 @@ import { pet } from "./pet";
 })
 export class DataService {
   public pets: Subject<pet[]> = new Subject();
+  public center: Subject<number[]> = new Subject();
+
   public constructor() { }
+
   public addPets(pets: pet[]): void {
     this.pets.next(pets);
+  }
+
+  public changeCenter(center: number[]) {
+    this.center.next(center);
   }
 }

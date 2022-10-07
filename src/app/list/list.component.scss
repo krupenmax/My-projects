@@ -42,7 +42,7 @@
   line-height: 1.3;
 }
 
-.add-area button:disabled {
+.add-area, button:disabled {
   color: #787878;
   cursor: auto;
 }
@@ -111,6 +111,12 @@
   margin-top: 20px;
   display: flex;
   align-items: center;
+  transition: 0.5s;
+}
+
+.pet-div:hover {
+  width: 92%;
+  transition: 0.5s;
 }
 
 .pet-div img {

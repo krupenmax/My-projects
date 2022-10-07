@@ -1,4 +1,4 @@
-import { AfterContentChecked, ChangeDetectorRef, Component, DoCheck, Input, OnChanges, OnInit } from "@angular/core";
+import { ChangeDetectorRef, Component, OnInit } from "@angular/core";
 import * as L from "leaflet";
 import { Subject } from "rxjs";
 import { DataService } from "../data.service";
@@ -14,7 +14,8 @@ export class MapComponent implements OnInit{
   private map?: L.Map;
   private centroid: L.LatLngExpression = [54.012152, 27.679890];
   public petSubject: Subject<pet[]> = this.dataService.pets;
-  public pets?: pet[];
+  public centerSubject: Subject<number[]> = this.dataService.center;
+  public pets: pet[] = new Array();
   public constructor(private cdr: ChangeDetectorRef, private dataService: DataService) {
   }
 
@@ -27,19 +28,20 @@ export class MapComponent implements OnInit{
     const tiles = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution: "&copy; <a href=\"http://www.openstreetmap.org/copyright\">OpenStreetMap<a/>",
       maxZoom: 18,
-      minZoom: 10,
     });
     tiles.addTo(this.map);
   }
 
-  public a(): void {
+  public addMarker(): void {
     if (this.pets?.length != 0) {
-      let img = this.pets?.[this.pets?.length - 1].image;
+      let img = this.pets[this.pets?.length - 1].image;
+      let x = this.pets[this.pets?.length - 1].x as number;
+      let y = this.pets[this.pets?.length - 1].y as number;
       const icon = L.icon({
         iconSize: [45, 63],
         iconUrl: "../../assets/" + img + ".png",
       });
-      let marker = L.marker([54.0120607, 27.6808058], { icon: icon }).addTo(this.map as L.Map);
+      let marker = L.marker([x, y], { icon: icon }).addTo(this.map as L.Map);
     }
   }
 
@@ -48,7 +50,8 @@ export class MapComponent implements OnInit{
     this.petSubject = this.dataService.pets;
     this.petSubject.subscribe(data => {
       this.pets = data;
-      this.a();
+      this.addMarker();
     });
+    this.centerSubject.subscribe(data => this.map?.panTo(new L.LatLng(data[0], data[1])));
   }
 }

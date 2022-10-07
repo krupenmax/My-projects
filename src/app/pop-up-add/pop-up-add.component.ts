@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Output } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { delay } from "rxjs";
 import { pet } from "../pet";
 import { PopUpService } from "../pop-up.service";
 import { validateCoordinatesMax, validateCoordinatesMin, validateOnlyNumbers } from "../validators";

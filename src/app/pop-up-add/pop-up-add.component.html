@@ -18,8 +18,8 @@
           </span>
         </div>   
         <div *ngIf="addForm.get('x')?.errors?.['invalidInput'] && addForm.get('x')?.touched && !addForm.get('x')?.errors?.['required']" class="error">Field must contain only numbers</div> 
-        <div *ngIf="addForm.get('x')?.errors?.['invalidMaxLength'] && !addForm.get('x')?.errors?.['required']" class="error">Maximum length: 180</div> 
-        <div *ngIf="addForm.get('x')?.errors?.['invalidMinLength'] && !addForm.get('x')?.errors?.['required'] " class="error">Minimum length: -180</div> 
+        <div *ngIf="addForm.get('x')?.errors?.['invalidMaxLength'] && !addForm.get('x')?.errors?.['required']" class="error">Maximum value: 180</div> 
+        <div *ngIf="addForm.get('x')?.errors?.['invalidMinLength'] && !addForm.get('x')?.errors?.['required'] " class="error">Minimum value: -180</div> 
         <div *ngIf="addForm.get('x')?.errors?.['required'] && addForm.get('x')?.touched" class="error">Field required</div> 
         <div class="field field_v2">
             <label for="last-name" class="ha-screen-reader">Y</label>
@@ -29,8 +29,8 @@
             </span>
         </div>    
         <div *ngIf="addForm.get('y')?.errors?.['invalidInput'] && addForm.get('y')?.touched && !addForm.get('y')?.errors?.['required']" class="error">Field must contain only numbers</div> 
-        <div *ngIf="addForm.get('y')?.errors?.['invalidMaxLength'] && !addForm.get('y')?.errors?.['required']" class="error">Maximum length: 180</div> 
-        <div *ngIf="addForm.get('y')?.errors?.['invalidMinLength'] && !addForm.get('y')?.errors?.['required'] " class="error">Minimum length: -180</div> 
+        <div *ngIf="addForm.get('y')?.errors?.['invalidMaxLength'] && !addForm.get('y')?.errors?.['required']" class="error">Maximum value: 180</div> 
+        <div *ngIf="addForm.get('y')?.errors?.['invalidMinLength'] && !addForm.get('y')?.errors?.['required'] " class="error">Minimum value: -180</div> 
         <div *ngIf="addForm.get('y')?.errors?.['required'] && addForm.get('y')?.touched" class="error">Field required</div> 
     </div>
     <button (click)="popUp()">Select avatar</button>

@@ -1,9 +1,8 @@
 <div class="add-area">
-    <button (click)="addPet()">Add Pet</button>
-    <button>Delete Pet</button>
+    <button (click)="addPet()">+</button>
 </div>
 <div class="pets-area">
-    <div class="pet-div" *ngFor="let pet of pets">
+    <div class="pet-div" *ngFor="let pet of pets; index as i" (click)="centerPet(i)">
         <img src="{{pet.image}}.jpg">
         <div class="description">
             Name: {{pet.name}}; Position: {{pet.x}}, {{pet.y}}
