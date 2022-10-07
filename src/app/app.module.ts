@@ -1,16 +1,14 @@
 import { NgModule } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
-
+import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { ListComponent } from "./list/list.component";
-import { MapComponent } from "./map/map.component";
-import { PopUpAddComponent } from "./pop-up-add/pop-up-add.component";
+import { MenuComponent } from "./menu/menu.component";
 
 @NgModule({
   bootstrap: [AppComponent],
-  declarations: [AppComponent, ListComponent, MapComponent, PopUpAddComponent],
-  imports: [BrowserModule, ReactiveFormsModule],
+  declarations: [AppComponent],
+  imports: [BrowserModule, ReactiveFormsModule, AppRoutingModule],
   providers: [],
 })
 export class AppModule { }
