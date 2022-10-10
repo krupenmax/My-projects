@@ -9,5 +9,9 @@ export function myOperator<T, A extends ObservableInput<any>>(project: (value: T
       console.log(project);
     }, delayTime * counter);
   });
+
+  const timer: ReturnType<typeof setTimeout> = setTimeout(() => {
+  }, 5000);
+  console.log(timer);
   return mergeMap(project);
 }
