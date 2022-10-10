@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, ChangeDetectorRef } from "@angular/core";
 import { Component } from "@angular/core";
 import { Subject } from "rxjs";
 import { DataService } from "./data.service";
@@ -11,7 +11,7 @@ import { Pet } from "./pet";
   templateUrl: "./app-map.component.html",
 })
 
-export class MainComponent implements OnInit {
+export class MainComponent {
   public pets: Subject<Pet[]> = new Subject();
   public petArray: Pet[] = [];
   public title = "object-map-app";
@@ -32,9 +32,5 @@ export class MainComponent implements OnInit {
     this.petArray = tmpArray;
     this.dataService.addPets(this.petArray);
     this.cdr.detectChanges();
-  }
-
-  public ngOnInit(): void {
-    console.log();
   }
 }
