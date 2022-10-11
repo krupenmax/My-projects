@@ -1,47 +1,47 @@
 :host {
-    position: absolute;
-    z-index: 2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: solid 5px #673AB7;
-    border-radius: 15px;
-    padding: 5% 10%;
-    background-color: #fff;
-    flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  border: solid 5px #673ab7;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5% 10%;
+  position: absolute;
+  z-index: 2;
 }
 
 .addForm {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .addForm button {
   backface-visibility: hidden;
   background: #2d7ec9;
   border: 0;
-  border-radius: .375rem;
+  border-radius: 0.375rem;
   box-sizing: border-box;
   color: #fff;
   cursor: pointer;
   display: inline-block;
+  font-family: Roboto;
+  font-size: 1.125rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  margin: 10px;
   padding: 1rem 1.25rem;
   position: relative;
   text-align: left;
   text-decoration: none;
-  transform: translateZ(0) scale(1);
-  transition: transform .2s;
-  user-select: none;
-  -webkit-user-select: none;
   touch-action: manipulation;
-  margin: 10px;
-  font-family: Roboto;
-  font-size: 1.125rem;
-  font-weight: 400;
-  letter-spacing: -.01em;
-  line-height: 1.3;
+  transform: translateZ(0) scale(1);
+  transition: transform 0.2s;
+  user-select: none;
+  user-select: none;
 }
 
 .addForm button:disabled {
@@ -54,20 +54,20 @@
 }
 
 .addForm button:not(:disabled):hover:active {
-  transform: scale(1.05) translateY(.125rem);
+  transform: scale(1.05) translateY(0.125rem);
 }
 
-    .addForm button:focus {
+.addForm button:focus {
   outline: 0 solid transparent;
 }
 
-.addForm button:focus:before {
-  border-width: .125rem;
+.addForm button:focus::before {
+  border-width: 0.125rem;
   content: "";
-  left: calc(-1*.375rem);
+  left: calc(-1*0.375rem);
   pointer-events: none;
   position: absolute;
-  top: calc(-1*.375rem);
+  top: calc(-1*0.375rem);
   transition: border-radius;
   user-select: none;
 }
@@ -77,19 +77,17 @@
 }
 
 .addForm button:not(:disabled):active {
-  transform: translateY(.125rem);
+  transform: translateY(0.125rem);
 }
 
-
-.ha-screen-reader{
-  width: var(--ha-screen-reader-width, 1px);
-  height: var(--ha-screen-reader-height, 1px);
-  padding: var(--ha-screen-reader-padding, 0);
+.ha-screen-reader {
   border: var(--ha-screen-reader-border, none);
-
-  position: var(--ha-screen-reader-position, absolute);
   clip: var(--ha-screen-reader-clip, rect(1px, 1px, 1px, 1px));
+  height: var(--ha-screen-reader-height, 1px);
   overflow: var(--ha-screen-reader-overflow, hidden);
+  padding: var(--ha-screen-reader-padding, 0);
+  position: var(--ha-screen-reader-position, absolute);
+  width: var(--ha-screen-reader-width, 1px);
 }
 
 /*
@@ -98,25 +96,22 @@ RESET STYLES
 =====
 */
 
-.field__input{ 
+.field__input {
   --uiFieldPlaceholderColor: var(--fieldPlaceholderColor, #767676);
-  
+
+  appearance: none;
   background-color: transparent;
-  border-radius: 0;
   border: none;
-
-  -webkit-appearance: none;
-  -moz-appearance: none;
-
+  border-radius: 0;
   font-family: inherit;
   font-size: inherit;
 }
 
-.field__input:focus::-webkit-input-placeholder{
+.field__input:focus::input-placeholder {
   color: var(--uiFieldPlaceholderColor);
 }
 
-.field__input:focus::-moz-placeholder{
+.field__input:focus::placeholder {
   color: var(--uiFieldPlaceholderColor);
 }
 
@@ -126,133 +121,129 @@ CORE STYLES
 =====
 */
 
-.field{
+.field {
   --uiFieldBorderWidth: var(--fieldBorderWidth, 2px);
   --uiFieldPaddingRight: var(--fieldPaddingRight, 1rem);
-  --uiFieldPaddingLeft: var(--fieldPaddingLeft, 1rem);   
-  --uiFieldBorderColorActive: var(--fieldBorderColorActive, rgba(22, 22, 22, 1));
+  --uiFieldPaddingLeft: var(--fieldPaddingLeft, 1rem);
+  --uiFieldBorderColorActive: var(--fieldBorderColorActive, rgb(22 22 22 / 100%));
 
   display: var(--fieldDisplay, inline-flex);
-  position: relative;
   font-size: var(--fieldFontSize, 1rem);
+  position: relative;
 }
 
-.field__input{
+.field__input {
+  border-bottom: var(--uiFieldBorderWidth) solid var(--fieldBorderColor, rgb(0 0 0 / 25%));
   box-sizing: border-box;
-  width: var(--fieldWidth, 100%);
   height: var(--fieldHeight, 3rem);
-  padding: var(--fieldPaddingTop, 1.25rem) var(--uiFieldPaddingRight) var(--fieldPaddingBottom, .5rem) var(--uiFieldPaddingLeft);
-  border-bottom: var(--uiFieldBorderWidth) solid var(--fieldBorderColor, rgba(0, 0, 0, .25)); 
+  padding: var(--fieldPaddingTop, 1.25rem) var(--uiFieldPaddingRight) var(--fieldPaddingBottom, 0.5rem) var(--uiFieldPaddingLeft);
+  width: var(--fieldWidth, 100%);
 }
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-    /* display: none; <- Crashes Chrome on hover */
-    -webkit-appearance: none;
-    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+  /* display: none; <- Crashes Chrome on hover */
+  appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
 
-input[type=number] {
-    -moz-appearance:textfield; /* Firefox */
+input[type="number"] {
+  appearance: textfield; /* Firefox */
 }
 
-.field__input:focus{
+.field__input:focus {
   outline: none;
 }
 
-.field__input::-webkit-input-placeholder{
+.field__input::input-placeholder {
   opacity: 0;
-  transition: opacity .2s ease-out;
+  transition: opacity 0.2s ease-out;
 }
 
-.field__input::-moz-placeholder{
+.field__input::placeholder {
   opacity: 0;
-  transition: opacity .2s ease-out;
+  transition: opacity 0.2s ease-out;
 }
 
-.field__input:focus::-webkit-input-placeholder{
+.field__input:focus::input-placeholder {
   opacity: 1;
-  transition-delay: .2s;
+  transition-delay: 0.2s;
 }
 
-.field__input:focus::-moz-placeholder{
+.field__input:focus::placeholder {
   opacity: 1;
-  transition-delay: .2s;
+  transition-delay: 0.2s;
 }
 
-.field__label-wrap{
+.field__label-wrap {
+  bottom: 0;
   box-sizing: border-box;
-  pointer-events: none;
   cursor: text;
-
+  left: 0;
+  pointer-events: none;
   position: absolute;
-  top: 0;
   right: 0;
-  bottom: 0;
-  left: 0;
+  top: 0;
 }
 
-.field__label-wrap::after{
-  content: "";
+.field__label-wrap::after {
+  bottom: 0;
   box-sizing: border-box;
-  width: 100%;
+  content: "";
   height: 0;
-  opacity: 0;
-
-  position: absolute;
-  bottom: 0;
   left: 0;
+  opacity: 0;
+  position: absolute;
+  width: 100%;
 }
 
-.field__input:focus ~ .field__label-wrap::after{
+.field__input:focus ~ .field__label-wrap::after {
   opacity: 1;
 }
 
-.field__label{
-  position: absolute;
-  left: var(--uiFieldPaddingLeft);
-  top: calc(50% - .5em);
-
-  line-height: 1;
+.field__label {
   font-size: var(--fieldHintFontSize, inherit);
-
-  transition: top .2s cubic-bezier(0.9, -0.15, 0.1, 1.15), opacity .2s ease-out, font-size .2s ease-out;
+  left: var(--uiFieldPaddingLeft);
+  line-height: 1;
+  position: absolute;
+  top: calc(50% - 0.5em);
+  transition: top 0.2s cubic-bezier(0.9, -0.15, 0.1, 1.15), opacity 0.2s ease-out, font-size 0.2s ease-out;
   will-change: bottom, opacity, font-size;
 }
 
 .field__input:focus ~ .field__label-wrap .field__label,
-.field__input:not(:placeholder-shown) ~ .field__label-wrap .field__label{
-  --fieldHintFontSize: var(--fieldHintFontSizeFocused, .75rem);
+.field__input:not(:placeholder-shown) ~ .field__label-wrap .field__label {
+  --fieldHintFontSize: var(--fieldHintFontSizeFocused, 0.75rem);
 
-  top: var(--fieldHintTopHover, .25rem);
+  top: var(--fieldHintTopHover, 0.25rem);
 }
 
-/* 
+/*
 effect 1
 */
 
-.field_v1 .field__label-wrap::after{
+.field_v1 .field__label-wrap::after {
   border-bottom: var(--uiFieldBorderWidth) solid var(--uiFieldBorderColorActive);
-  transition: opacity .2s ease-out;
+  transition: opacity 0.2s ease-out;
   will-change: opacity;
 }
 
-/* 
+/*
 effect 2
 */
 
-.field_v2 .field__label-wrap{
+.field_v2 .field__label-wrap {
   overflow: hidden;
 }
 
-.field_v2 .field__label-wrap::after{
+.field_v2 .field__label-wrap::after {
   border-bottom: var(--uiFieldBorderWidth) solid var(--uiFieldBorderColorActive);
   transform: translate3d(-105%, 0, 0);
+  transition: transform 0.285s ease-out 0.2s, opacity 0.2s ease-out 0.2s;
   will-change: transform, opacity;
-  transition: transform .285s ease-out .2s, opacity .2s ease-out .2s;
 }
 
-.field_v2 .field__input:focus ~ .field__label-wrap::after{
+.field_v2 .field__input:focus ~ .field__label-wrap::after {
   transform: translate3d(0, 0, 0);
   transition-delay: 0;
 }
@@ -261,13 +252,13 @@ effect 2
 effect 3
 */
 
-.field_v3 .field__label-wrap::after{
+.field_v3 .field__label-wrap::after {
   border: var(--uiFieldBorderWidth) solid var(--uiFieldBorderColorActive);
+  transition: height 0.2s ease-out, opacity 0.2s ease-out;
   will-change: opacity, height;
-  transition: height .2s ease-out, opacity .2s ease-out;
 }
 
-.field_v3 .field__input:focus ~ .field__label-wrap::after{
+.field_v3 .field__input:focus ~ .field__label-wrap::after {
   height: 100%;
 }
 
@@ -277,9 +268,9 @@ LEVEL 4. SETTINGS
 =====
 */
 
-.field{
-  --fieldBorderColor: #D1C4E9;
-  --fieldBorderColorActive: #673AB7;
+.field {
+  --fieldBorderColor: #d1c4e9;
+  --fieldBorderColorActive: #673ab7;
 }
 
 /*
@@ -288,90 +279,87 @@ DEMO
 =====
 */
 
-body{
-  font-family: Roboto;
-  margin: 0;
-
-  min-height: 100vh;
+body {
   display: flex;
   flex-direction: column;
+  font-family: Roboto;
+  margin: 0;
+  min-height: 100vh;
 }
 
-.page{
+.page {
   box-sizing: border-box;
-  width: 100%;
-  max-width: 480px;
-  margin: auto;
-  padding: 1rem;
-
   display: grid;
   grid-gap: 30px;
+  margin: auto;
+  max-width: 480px;
+  padding: 1rem;
+  width: 100%;
 }
 
-.linktr{
+.linktr {
   order: -1;
   padding: 1.75rem;
   text-align: center;
 }
 
-.linktr__goal{
-  background-color: rgb(209, 246, 255);
-  color: rgb(8, 49, 112);
-  box-shadow: rgb(8 49 112 / 24%) 0px 2px 8px 0px;
+.linktr__goal {
+  background-color: rgb(209 246 255);
   border-radius: 2rem;
-  padding: .5rem 1.25rem;
+  box-shadow: rgb(8 49 112 / 24%) 0 2px 8px 0;
+  color: rgb(8 49 112);
+  padding: 0.5rem 1.25rem;
 }
 
-@media (min-width: 1024px){
-  
-  .linktr{
-    position: absolute; 
-    right: 1rem; 
+@media (min-width: 1024px) {
+  .linktr {
     bottom: 1rem;
+    position: absolute;
+    right: 1rem;
   }
 }
 
-.r-link{
-    --uirLinkDisplay: var(--rLinkDisplay, inline-flex);
-    --uirLinkTextColor: var(--rLinkTextColor);
-    --uirLinkTextDecoration: var(--rLinkTextDecoration, none);
+.r-link {
+  --uirLinkDisplay: var(--rLinkDisplay, inline-flex);
+  --uirLinkTextColor: var(--rLinkTextColor);
+  --uirLinkTextDecoration: var(--rLinkTextDecoration, none);
 
-    display: var(--uirLinkDisplay) !important;
-    color: var(--uirLinkTextColor) !important;
-    text-decoration: var(--uirLinkTextDecoration) !important;
+  color: var(--uirLinkTextColor) !important;
+  display: var(--uirLinkDisplay) !important;
+  text-decoration: var(--uirLinkTextDecoration) !important;
 }
-
 
 * {
-  outline: 0;
   font-family: Roboto;
+  outline: 0;
 }
+
 body {
-  background-color: #fafafa
+  background-color: #fafafa;
 }
+
 span.msg,
 span.choose {
   color: #555;
+  display: inherit;
   padding: 5px 0 10px;
-  display: inherit
 }
+
 .container {
-  width: 500px;
   margin: 50px auto 0;
-  text-align: center
+  text-align: center;
+  width: 500px;
 }
-
-
 
 .pop-up-image {
+  background-color: #fff;
+  border: solid 5px #673ab7;
+  border-radius: 15px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  padding: 25% 10%;
   position: absolute;
   z-index: 3;
-  border: solid 5px #673AB7;
-  border-radius: 15px;
-  padding: 25% 10%;
-  background-color: #fff;
 }
 
 .error {
@@ -379,6 +367,3 @@ span.choose {
   font-size: 12px;
   text-align: center;
 }
-
-
-

@@ -10,7 +10,7 @@ import { Router } from "@angular/router";
 })
 
 export class AppComponent {
-  public title = "object-map-app";
+  public title = "My Projects";
 
   public constructor(private router: Router) {
 

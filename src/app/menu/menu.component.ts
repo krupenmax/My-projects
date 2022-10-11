@@ -17,6 +17,8 @@ export class MenuComponent implements OnInit{
     for (let i: number = 0; i < 10; i++) {
       this.arrNum.push(i);
     }
+
+
   }
 
   public test() {
@@ -35,12 +37,11 @@ export class MenuComponent implements OnInit{
       delay(delayTime * this.arrNum.length),
     ).subscribe({
       complete: () => {
-        console.log("Sequence c ompleted.");
-      },
-      next: data => {
-        console.log(data);
+        console.log("Sequence completed.");
       },
     });
+
+
   }
 
 }

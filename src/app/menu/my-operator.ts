@@ -1,4 +1,4 @@
-import { Observable, delay } from "rxjs";
+import { Observable } from "rxjs";
 
 export function myOperator(delayTime: number) {
   return function <T>(source: Observable<T[]>): Observable<T[]> {
