@@ -1,4 +1,4 @@
-import { Observable } from "rxjs";
+import { Observable, delay } from "rxjs";
 
 export function myOperator(delayTime: number) {
   return function <T>(source: Observable<T[]>): Observable<T[]> {
@@ -17,7 +17,11 @@ export function myOperator(delayTime: number) {
         error: err => subscriber.error(err),
         next: value => {
           value.forEach(item => {
-            setTimeout(() => result.push(item), counter * delayTime);
+            setTimeout(() => {
+              result.push(item);
+              console.log(result);
+            },
+            counter * delayTime);
             counter++;
           });
         },

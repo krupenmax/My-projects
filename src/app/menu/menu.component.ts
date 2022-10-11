@@ -1,18 +1,26 @@
-import { Component, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { Observable, of } from "rxjs";
+import { Observable, delay, of } from "rxjs";
 import { myOperator } from "./my-operator";
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.Default,
   selector: "app-menu",
   styleUrls: ["./menu.component.scss"],
   templateUrl: "./menu.component.html",
 })
 export class MenuComponent implements OnInit{
   public obs: Observable<number[]> = new Observable();
-  public arrNum: number[] = [1, 2, 3, 4, 5, 6];
-  public constructor(private router: Router) {
+  public arrNum: number[] = new Array();
+  public obsOutput: number[] = new Array();
+  public constructor(private router: Router, private cdr: ChangeDetectorRef) {
+    for (let i: number = 0; i < 10; i++) {
+      this.arrNum.push(i);
+    }
+  }
 
+  public test() {
+    console.log(this.obsOutput);
   }
 
   public loadProject(url: string): void {
@@ -20,10 +28,15 @@ export class MenuComponent implements OnInit{
   }
 
   public ngOnInit(): void {
+    let delayTime: number = 1000;
     this.obs = of(this.arrNum);
     this.obs.pipe(
-      myOperator(1000),
+      myOperator(delayTime),
+      delay(delayTime * this.arrNum.length),
     ).subscribe({
+      complete: () => {
+        console.log("Sequence c ompleted.");
+      },
       next: data => {
         console.log(data);
       },
