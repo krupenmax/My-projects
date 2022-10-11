@@ -1,6 +1,6 @@
-import { Observable, ObservableInput, OperatorFunction, concatMap, interval, map, mergeMap, take } from "rxjs";
+import { Observable } from "rxjs";
 
-export function myOperator() {
+export function myOperator(delayTime: number) {
   return function <T>(source: Observable<T[]>): Observable<T[]> {
     return new Observable<T[]>(subscriber => {
       let result: T[] = new Array();
@@ -17,7 +17,7 @@ export function myOperator() {
         error: err => subscriber.error(err),
         next: value => {
           value.forEach(item => {
-            setTimeout(() => result.push(item), counter * 1000);
+            setTimeout(() => result.push(item), counter * delayTime);
             counter++;
           });
         },
