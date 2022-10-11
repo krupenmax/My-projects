@@ -1,6 +1,6 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { Observable, of } from "rxjs";
+import { Observable, Observer, Subscriber, of, subscribeOn } from "rxjs";
 import { myOperator } from "./my-operator";
 
 @Component({
@@ -8,7 +8,7 @@ import { myOperator } from "./my-operator";
   styleUrls: ["./menu.component.scss"],
   templateUrl: "./menu.component.html",
 })
-export class MenuComponent{
+export class MenuComponent implements OnInit{
   public obs: Observable<number[]> = new Observable();
   public arrNum: number[] = [1, 2 , 3];
   public constructor(private router: Router) {
@@ -20,10 +20,23 @@ export class MenuComponent{
   }
 
   public test(): void {
-    this.obs = of(this.arrNum);
+    this.obs = new Observable(this.a);
+  }
+
+  public a(myObserver: Observer<number[]>) {
+    myObserver.next([1, 2, 3, 4, 5, 6]);
+    myObserver.complete();
+  }
+
+  public ngOnInit(): void {
+    this.obs = new Observable(this.a);
     this.obs.pipe(
-      myOperator(data => this.arrNum, 1000),
-    ).subscribe(data => console.log(data));
+      myOperator(),
+    ).subscribe({
+      next: data => {
+        console.log(data);
+      },
+    });
   }
 
 }
