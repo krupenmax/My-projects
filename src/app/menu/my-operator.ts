@@ -5,13 +5,13 @@ export function myOperator(delayTime: number) {
     return new Observable<T[]>(subscriber => {
       let result: T[] = new Array();
       let counter: number = 0;
-      function flush() {
+      function getResult() {
         subscriber.next(result);
       }
 
       const subscription = source.subscribe({
         complete: () => {
-          flush();
+          getResult();
           subscriber.complete();
         },
         error: err => subscriber.error(err),
