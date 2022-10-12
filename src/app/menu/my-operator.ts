@@ -16,14 +16,14 @@ export function myOperator(delayTime: number) {
         },
         error: err => subscriber.error(err),
         next: value => {
-          value.forEach(item => {
-            setTimeout(() => {
-              result.push(item);
-              console.log(result);
-            },
-            counter * delayTime);
+          let timerId = setInterval(() => {
+            result.push(value[counter]);
             counter++;
-          });
+            console.log(result);
+            if (counter === value.length) {
+              clearInterval(timerId);
+            }
+          }, delayTime);
         },
       });
 
