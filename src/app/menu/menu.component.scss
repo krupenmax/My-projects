@@ -39,12 +39,12 @@ h3 {
   justify-content: center;
   animation: 3s;
   animation-name: createBox;
-  border: solid 3px #000;
   box-shadow: 0 0 50px rgb(0 0 0);
   display: flex;
   flex-direction: column;
   transition: .5s;
   border-radius: 30px;
+  border: #527897 solid 5px;
 }
 
 

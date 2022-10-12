@@ -5,21 +5,25 @@ export function myOperator(delayTime: number) {
     return new Observable<T[]>(subscriber => {
       let result: T[] = new Array();
       let counter: number = 0;
+      let length: number = 0;
       function getResult() {
         subscriber.next(result);
       }
 
       const subscription = source.subscribe({
         complete: () => {
-          getResult();
-          subscriber.complete();
+          setTimeout(() => {
+            getResult();
+            console.log("myOperator completed.");
+            subscriber.complete();
+          }, delayTime * length);
         },
         error: err => subscriber.error(err),
         next: value => {
+          length = value.length;
           let timerId = setInterval(() => {
             result.push(value[counter]);
             counter++;
-            console.log(result);
             if (counter === value.length) {
               clearInterval(timerId);
             }

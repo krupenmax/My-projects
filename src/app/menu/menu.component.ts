@@ -34,8 +34,10 @@ export class MenuComponent implements OnInit{
     this.obs = of(this.arrNum);
     this.obs.pipe(
       myOperator(delayTime),
-    ).subscribe(
-      data => console.log(data));
+    ).subscribe({
+      complete: () => console.info("Sequence complete."),
+      error: (e) => console.error(e),
+    });
 
 
   }

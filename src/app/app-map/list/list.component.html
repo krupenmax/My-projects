@@ -1,5 +1,6 @@
 <div class="add-area">
-    <button (click)="addPet()">+</button>
+    <button routerLink="">Back</button>
+    <button (click)="addPet()" >+</button>
 </div>
 <div class="pets-area">
     <div class="pet-div" *ngFor="let pet of pets; index as i" (click)="centerPet(i)">
