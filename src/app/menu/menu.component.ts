@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { Observable, delay, from, of, toArray } from "rxjs";
+import { Observable, concatMap, delay, from, map, mergeMap, of, toArray } from "rxjs";
 import { myOperator } from "./my-operator";
 
 @Component({
@@ -10,8 +10,8 @@ import { myOperator } from "./my-operator";
   templateUrl: "./menu.component.html",
 })
 export class MenuComponent implements OnInit{
-  public obs: Observable<number[]> = new Observable();
   public arrNum: number[] = new Array();
+  public obs: Observable<number[]> = new Observable();
   public obsOutput: number[] = new Array();
   public constructor(private router: Router, private cdr: ChangeDetectorRef) {
     for (let i: number = 0; i < 10; i++) {
@@ -26,13 +26,15 @@ export class MenuComponent implements OnInit{
   }
 
   public add() {
-    this.obs = from([1,2,35,6]).pipe(
-      myOperator(2000),
+    this.obs = from([55,1,15,5]).pipe(
+      myOperator(500),
       toArray(),
     );
     this.obs.subscribe({
       complete: () => console.log("Subscription completed."),
-      next: (data) => console.log(data),
+      next: (data) => {
+        console.log(data);
+      },
     });
     this.cdr.detectChanges();
   }
@@ -42,9 +44,8 @@ export class MenuComponent implements OnInit{
   }
 
   public ngOnInit(): void {
-    let delayTime: number = 1000;
     this.obs = from(this.arrNum).pipe(
-      myOperator(delayTime),
+      myOperator(500),
       toArray(),
     );
     this.obs.subscribe({

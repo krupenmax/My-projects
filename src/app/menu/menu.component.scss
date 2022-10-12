@@ -19,7 +19,6 @@ h1 {
   font-weight: 600;
   transition: 0.5s;
   text-align: center;
-  text-shadow:  0 0 2px #fff;
 }
 
 h1:hover {
@@ -40,12 +39,12 @@ h3 {
   animation: 3s;
   animation-name: test;
   animation-iteration-count: infinite;
-  box-shadow: 0 0 50px rgb(0 0 0);
+  box-shadow: 0 0 10px rgb(0 0 0);
   display: flex;
   flex-direction: column;
   transition: .5s;
   border-radius: 30px;
-  border: #243b4e solid 3px;
+  border:  rgb(29, 29, 29) solid 10px;
 }
 
 
@@ -107,9 +106,9 @@ button {
   padding-top: 10px;
   position: absolute;
   text-align: center;
-  text-shadow: 0 0 2px #fff;
   width: 100%;
   z-index: 1;
+  font-weight: 700;
 }
 
 .dropdown:hover .dropdown-content {

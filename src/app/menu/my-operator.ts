@@ -24,7 +24,7 @@ export function myOperator(delayTime: number) {
       const subscription = source.subscribe({
         complete: () => {
           setTimeout(() => {
-            console.log("Time ellapsed " + length * delayTime / 1000 + "s");
+            console.log(`Time ellapsed: ${length * delayTime / 1000}s.`);
             subscriber.complete();
           }, delayTime * length);
         },
@@ -32,7 +32,7 @@ export function myOperator(delayTime: number) {
         next: value => {
           setTimeout(() => {
             result = value;
-            container.push(value as unknown as T);
+            container.push(value);
             getResult();
           }, delayTime * counter);
           counter++;
