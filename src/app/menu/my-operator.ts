@@ -1,8 +1,13 @@
 import { Observable, toArray } from "rxjs";
-
+let container: any[] = [];
 export function myOperator(delayTime: number) {
   return function <T>(source: Observable<T>): Observable<T> {
     return new Observable<T>(subscriber => {
+      if (container.length) {
+        for (let i: number = 0; i < container.length; i++) {
+          subscriber.next(container[i] as T);
+        }
+      }
       let result: T;
       let counter: number = 1;
       let length: number = 0;
@@ -27,6 +32,7 @@ export function myOperator(delayTime: number) {
         next: value => {
           setTimeout(() => {
             result = value;
+            container.push(value as unknown as T);
             getResult();
           }, delayTime * counter);
           counter++;

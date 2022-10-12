@@ -25,6 +25,18 @@ export class MenuComponent implements OnInit{
     console.log(this.obsOutput);
   }
 
+  public add() {
+    this.obs = from([1,2,35,6]).pipe(
+      myOperator(2000),
+      toArray(),
+    );
+    this.obs.subscribe({
+      complete: () => console.log("Subscription completed."),
+      next: (data) => console.log(data),
+    });
+    this.cdr.detectChanges();
+  }
+
   public loadProject(url: string): void {
     this.router.navigateByUrl(url);
   }
