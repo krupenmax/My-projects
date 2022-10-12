@@ -38,13 +38,14 @@ h3 {
 .Welcome-menu {
   justify-content: center;
   animation: 3s;
-  animation-name: createBox;
+  animation-name: test;
+  animation-iteration-count: infinite;
   box-shadow: 0 0 50px rgb(0 0 0);
   display: flex;
   flex-direction: column;
   transition: .5s;
   border-radius: 30px;
-  border: #527897 solid 5px;
+  border: #243b4e solid 3px;
 }
 
 
@@ -86,6 +87,13 @@ button {
   100% {
     transform: rotateX(0deg);
   }
+}
+
+@keyframes test {
+  100% {
+    transform: translateY(0);
+  }
+	
 }
 
 .dropdown {

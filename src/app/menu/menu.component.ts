@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { Observable, delay, of } from "rxjs";
+import { Observable, delay, from, of, toArray } from "rxjs";
 import { myOperator } from "./my-operator";
 
 @Component({
@@ -31,14 +31,14 @@ export class MenuComponent implements OnInit{
 
   public ngOnInit(): void {
     let delayTime: number = 1000;
-    this.obs = of(this.arrNum);
-    this.obs.pipe(
+    this.obs = from(this.arrNum).pipe(
       myOperator(delayTime),
-    ).subscribe({
-      complete: () => console.info("Sequence complete."),
-      error: (e) => console.error(e),
+      toArray(),
+    );
+    this.obs.subscribe({
+      complete: () => console.log("Subscription completed."),
+      next: (data) => console.log(data),
     });
-
 
   }
 
