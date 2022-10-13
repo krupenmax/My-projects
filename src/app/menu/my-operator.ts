@@ -12,18 +12,15 @@ export function myOperator(delayTime: number) {
           subscriber.next(value);
           clearInterval(timeout);
           timeout = undefined;
+          if (isSourceCompleted && !queue.length) {
+            subscriber.complete();
+          }
         }
         else {
           subscriber.next(value);
-          let tmp = queue[0];
-          queue.splice(0, 1);
+          let tmp = queue.splice(0, 1)[0];
           setTimeout(() => {
             output(tmp);
-          }, delayTime);
-        }
-        if (isSourceCompleted && !queue.length) {
-          setTimeout(() => {
-            subscriber.complete();
           }, delayTime);
         }
       }
