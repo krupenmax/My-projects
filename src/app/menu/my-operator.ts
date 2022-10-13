@@ -12,7 +12,7 @@ export function myOperator(delayTime: number) {
           subscriber.next(value);
           clearInterval(timeout);
           timeout = undefined;
-          if (isSourceCompleted && !queue.length) {
+          if (isSourceCompleted) {
             subscriber.complete();
           }
         }
