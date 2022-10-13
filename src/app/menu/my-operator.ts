@@ -30,17 +30,19 @@ export function myOperator(delayTime: number) {
 
       const sourceSubscription = source.subscribe({
         complete: () => {
-          console.log("Source subscription completed.");
           isSourceCompleted = true;
+          if (!queue.length) {
+            subscriber.complete();
+          }
         },
         error: (e) => subscriber.error(e),
         next: (data) => {
-          console.log(`myOperator: proceeded - ${data}`);
+          console.log(`myOperator:proceeded - ${data}`);
           if (timeout === undefined) {
             queue = [];
             timeout = setTimeout(() => {
               output(data);
-            }, delayTime);
+            }, 0);
           }
           else {
             if (timeout !== undefined) {
