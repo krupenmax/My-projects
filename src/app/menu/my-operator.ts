@@ -3,12 +3,12 @@ import { Observable } from "rxjs";
 export function myOperator(delayTime: number) {
   return function <T>(source: Observable<T>): Observable<T> {
     return new Observable<T>(subscriber => {
-      let queue: T[] | undefined;
+      let queue: T[];
       let isSourceCompleted: boolean = false;
       let timeout: ReturnType<typeof setTimeout> | undefined;
 
       function output(value: T) {
-        if (!queue?.length) {
+        if (!queue.length) {
           subscriber.next(value);
           clearInterval(timeout);
           timeout = undefined;
@@ -21,7 +21,7 @@ export function myOperator(delayTime: number) {
             output(tmp);
           }, delayTime);
         }
-        if (isSourceCompleted && !queue?.length) {
+        if (isSourceCompleted && !queue.length) {
           setTimeout(() => {
             subscriber.complete();
           }, delayTime);
@@ -44,7 +44,7 @@ export function myOperator(delayTime: number) {
           }
           else {
             if (timeout !== undefined) {
-              queue?.push(data);
+              queue.push(data);
             }
           }
         },
