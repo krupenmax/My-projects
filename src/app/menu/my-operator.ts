@@ -18,7 +18,7 @@ export function myOperator(delayTime: number) {
         }
         else {
           subscriber.next(value);
-          let tmp = queue.splice(0, 1)[0];
+          let tmp = queue.shift() as T;
           setTimeout(() => {
             output(tmp);
           }, delayTime);
