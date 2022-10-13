@@ -11,7 +11,7 @@ import { myOperator } from "./my-operator";
 })
 export class MenuComponent implements OnInit{
   public arrNum: string[] = [];
-  public obs: Observable<string[]> = new Observable();
+  public obs: Observable<string> = new Observable();
   public obsOutput: number[] = new Array();
   public constructor(private router: Router, private cdr: ChangeDetectorRef) {
   }
@@ -54,11 +54,10 @@ export class MenuComponent implements OnInit{
       }
     }).pipe(
       myOperator(1000),
-      toArray(),
     );
     this.obs.subscribe({
       complete: () => console.log("Subscription completed."),
-      next: (data) => console.log(data),
+      next: (data) => console.log(`Observable: * ${data} * - proceeded`),
     });
   }
 }

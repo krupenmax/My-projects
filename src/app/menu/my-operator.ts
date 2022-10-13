@@ -3,26 +3,16 @@ import { Observable, Subscription, debounce, debounceTime, delay, delayWhen, fro
 export function myOperator(delayTime: number) {
   return function <T>(source: Observable<T>): Observable<T> {
     return new Observable<T>(subscriber => {
-      let timeout: ReturnType<typeof setTimeout> | undefined;
-      let outputSubscription: Subscription;
       let result: T[] = [];
       let isSourceCompleted: boolean = false;
       function output(value: T) {
-        outputSubscription = interval(delayTime * result.length).pipe(
-          take(1),
-          map(data => value),
-        ).subscribe({
-          complete: () => {
-            result.pop();
-            if (!result?.length && isSourceCompleted) {
-              subscriber.complete();
-            }
-          },
-          next: (data) => {
-            subscriber.next(data);
-            console.log(`${data} - added to subscriber`);
-          },
-        });
+        setTimeout(() => {
+          subscriber.next(value);
+          result.pop();
+          if (!result?.length && isSourceCompleted) {
+            subscriber.complete();
+          }
+        }, delayTime * result.length);
       }
 
       const sourceSubscription = source.subscribe({
@@ -31,16 +21,14 @@ export function myOperator(delayTime: number) {
           isSourceCompleted = true;
         },
         next: (data) => {
-          console.log(`myOperator:proceeded - ${data}`);
+          console.log(`myOperator: proceeded - ${data}`);
           result.push(data);
           output(data);
         },
       });
 
       return () => {
-        clearTimeout(timeout);
         sourceSubscription.unsubscribe();
-        outputSubscription.unsubscribe();
       };
     });
   };
