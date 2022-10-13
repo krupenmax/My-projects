@@ -6,6 +6,7 @@ export function myOperator(delayTime: number) {
       let timeout: ReturnType<typeof setTimeout> | undefined;
       let outputSubscription: Subscription;
       let result: T[] = [];
+      let isSourceCompleted: boolean = false;
       function output(value: T) {
         outputSubscription = interval(delayTime * result.length).pipe(
           take(1),
@@ -13,6 +14,9 @@ export function myOperator(delayTime: number) {
         ).subscribe({
           complete: () => {
             result.pop();
+            if (!result?.length && isSourceCompleted) {
+              subscriber.complete();
+            }
           },
           next: (data) => {
             subscriber.next(data);
@@ -24,6 +28,7 @@ export function myOperator(delayTime: number) {
       const sourceSubscription = source.subscribe({
         complete: () => {
           console.log("Source subscription completed.");
+          isSourceCompleted = true;
         },
         next: (data) => {
           console.log(`myOperator:proceeded - ${data}`);
