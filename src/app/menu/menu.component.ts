@@ -10,33 +10,29 @@ import { myOperator } from "./my-operator";
   templateUrl: "./menu.component.html",
 })
 export class MenuComponent implements OnInit{
-  public arrNum: number[] = new Array();
-  public obs: Observable<number[]> = new Observable();
+  public arrNum: string[] = new Array();
+  public obs: Observable<string[]> = new Observable();
   public obsOutput: number[] = new Array();
   public constructor(private router: Router, private cdr: ChangeDetectorRef) {
     for (let i: number = 0; i < 10; i++) {
-      this.arrNum.push(i);
+      this.arrNum.push(`${i} awdwad`);
     }
 
 
   }
 
   public test() {
-    console.log(this.obsOutput);
-  }
-
-  public add() {
-    this.obs = from([55,1,15,5]).pipe(
-      myOperator(500),
+    for (let i: number = 0; i < 10; i++) {
+      this.arrNum.push(`${i} ddd`);
+    }
+    this.obs = from(this.arrNum).pipe(
+      myOperator(1000),
       toArray(),
     );
     this.obs.subscribe({
       complete: () => console.log("Subscription completed."),
-      next: (data) => {
-        console.log(data);
-      },
+      next: (data) => console.log(data),
     });
-    this.cdr.detectChanges();
   }
 
   public loadProject(url: string): void {
@@ -45,7 +41,7 @@ export class MenuComponent implements OnInit{
 
   public ngOnInit(): void {
     this.obs = from(this.arrNum).pipe(
-      myOperator(500),
+      myOperator(1000),
       toArray(),
     );
     this.obs.subscribe({
