@@ -49,12 +49,13 @@ export class MenuComponent implements OnInit{
         observer.complete();
       }, 22000);
 
-      for (let i: number = 0; i < 3; i++) {
+      for (let i: number = 1; i < 4; i++) {
         observer.next(`before first delay num ${i}`);
       }
     }).pipe(
       myOperator(1000),
     );
+
     this.obs.subscribe({
       complete: () => console.log("Subscription completed."),
       next: (data) => console.log(`Observable: * ${data} * - proceeded`),
