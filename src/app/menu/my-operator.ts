@@ -27,7 +27,10 @@ export function myOperator(delayTime: number) {
 
       const sourceSubscription = source.subscribe({
         complete: () => {
-          !queue.length ? subscriber.complete() : isSourceCompleted = true;
+          isSourceCompleted = true;
+          if (!queue.length) {
+            subscriber.complete();
+          }
         },
         error: (e) => subscriber.error(e),
         next: (data) => {
