@@ -6,7 +6,7 @@ import { myOperator } from "./my-operator";
 import { row } from "./row";
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.Default,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: "app-bank-unp",
   styleUrls: ["./bank-unp.component.scss"],
   templateUrl: "./bank-unp.component.html",
