@@ -1,6 +1,6 @@
 {
-	"/api": {
-		"target": "",
+	"/grp": {
+		"target": "http://www.portal.nalog.gov.by",
 		"secure": false,
 		"changeOrigin": true,
 		"logLevel": "debug",

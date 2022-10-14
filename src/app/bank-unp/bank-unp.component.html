@@ -1,0 +1,21 @@
+<div class="background"></div>
+
+<div class="table">
+    <table>
+        <tbody *ngIf="bankInfo"> 
+            <tr *ngFor="let company of bankInfo; index as i">
+                <td>{{company.ROW.CKODSOST}}</td>
+                <td>{{company.ROW.DLIKV}}</td>
+                <td>{{company.ROW.DREG}}</td>
+                <td>{{company.ROW.NMNS}}</td>
+                <td>{{company.ROW.VKODS}}</td>
+                <td>{{company.ROW.VLIKV}}</td>
+				<td>{{company.ROW.VMNS}}</td>
+				<td>{{company.ROW.VNAIMK}}</td>
+				<td>{{company.ROW.VNAIMP}}</td>
+				<td>{{company.ROW.VPADRES}}</td>
+				<td>{{company.ROW.VUNP}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
