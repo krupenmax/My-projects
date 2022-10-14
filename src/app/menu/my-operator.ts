@@ -38,9 +38,7 @@ export function myOperator(delayTime: number) {
             }, 0);
           }
           else {
-            if (timeout !== undefined) {
-              queue.push(data);
-            }
+            queue.push(data);
           }
         },
       });
