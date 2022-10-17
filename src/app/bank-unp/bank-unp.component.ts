@@ -33,7 +33,6 @@ export class BankUnpComponent implements OnInit {
       myOperator(1000),
     ).subscribe({
       next: (data) => {
-        console.log(data);
         data.subscribe(value => {
           this.bankInfo.push(value);
           this.cdr.detectChanges();
