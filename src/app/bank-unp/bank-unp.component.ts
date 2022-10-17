@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from "@
 import { Observable, from, map } from "rxjs";
 import { HttpService } from "./http.service";
 import { myOperator } from "./my-operator";
-import { row } from "./row";
+import { Row } from "./row";
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -12,8 +12,8 @@ import { row } from "./row";
   templateUrl: "./bank-unp.component.html",
 })
 export class BankUnpComponent implements OnInit {
-  public unpObservable: Observable<row> = new Observable();
-  public bankInfo: row[] = [];
+  public unpObservable: Observable<Row> = new Observable();
+  public bankInfo: Row[] = [];
   private UNP: string[] = [
     "491625265",
     "290954125",
