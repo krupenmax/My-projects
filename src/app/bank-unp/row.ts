@@ -1,4 +1,4 @@
 import { CompanyInterface } from "./company";
-export type row = {
+export type Row = {
   ROW: CompanyInterface;
 };
