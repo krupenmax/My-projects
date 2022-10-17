@@ -30,7 +30,9 @@ table {
 	position: relative;
 	color: #000;	
 	z-index: 1;
-	background-color: #fff;
+	background-color: #8EC5FC;
+	background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+	
 	flex-direction: column;
 	font-size: 15px;
 	padding: 10px;
@@ -39,7 +41,6 @@ table {
 .table td {
 	text-align: center;
 	padding: 10px;
-	border: solid 1px;
 }
 
 .grid-container {

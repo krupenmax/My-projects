@@ -29,16 +29,16 @@ export class BankUnpComponent implements OnInit {
 
   public ngOnInit(): void {
     from(this.UNP).pipe(
-      map(data => `grp/getData?unp=${data}&charset=UTF-8&type=json`),
+      map(data => this.httpService.request(`grp/getData?unp=${data}&charset=UTF-8&type=json`)),
       myOperator(1000),
     ).subscribe({
       next: (data) => {
-        this.httpService.request(data).subscribe(data => {
-          this.bankInfo.push(data);
+        console.log(data);
+        data.subscribe(value => {
+          this.bankInfo.push(value);
           this.cdr.detectChanges();
         });
       },
     });
   }
-
 }
