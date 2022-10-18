@@ -13,7 +13,7 @@
                 <td>Наименование и место нахождения юридического лица, фамилия, собственное имя, отчество (если таковое имеется) индивидуального предпринимателя</td>
                 <td>УНП</td>
             </tr>
-        </thead>    
+        </thead> 
         <tbody *ngIf="companies"> 
             <tr *ngFor="let company of companies; trackBy: trackByFn">
                 <td>{{company.ROW.CKODSOST}}</td>
@@ -23,11 +23,12 @@
 				<td>{{company.ROW.VMNS}}</td>
 				<td>{{company.ROW.VNAIMK}}</td>
 				<td>
-                    {{company.ROW.VNAIMP}}
-                    <b *ngIf="company.ROW.VPADRES">
+                        {{company.ROW.VNAIMP}}
+                    <span *ngIf="company.ROW.VPADRES">
                         ,
-                    </b>
-                    <div>{{company.ROW.VPADRES}}</div>  </td>
+                    </span>
+                    {{company.ROW.VPADRES}}
+                </td>
 				<td>{{company.ROW.VUNP}}</td>
             </tr>
         </tbody>

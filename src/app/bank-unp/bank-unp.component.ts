@@ -23,15 +23,6 @@ export class BankUnpComponent implements OnInit {
     "193361610",
     "191111948",
     "193545149",
-    "491625265",
-    "290954125",
-    "490087269",
-    "691379465",
-    "200056225",
-    "291563006",
-    "193361610",
-    "191111948",
-    "193545149",
   ];
   public constructor(private httpService: HttpService, private cdr: ChangeDetectorRef) { }
 
@@ -42,9 +33,12 @@ export class BankUnpComponent implements OnInit {
       concatMap(data => {
         return this.httpService.request(data);
       }),
-    ).subscribe(data => {
-      this.companies.push(data);
-      this.cdr.detectChanges();
+    ).subscribe({
+      error: (e) => alert(e.message),
+      next: (data) => {
+        this.companies.push(data);
+        this.cdr.detectChanges();
+      },
     });
   }
 
