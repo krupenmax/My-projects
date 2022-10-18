@@ -7,11 +7,11 @@
 	<div class="content">
 		<div class="message" *ngFor="let message of messages; index as i">
 			<div class="container" *ngIf="i % 2 === 0">
-				{{message}}
+				{{messages[messages.length - i - 1]}}
 			</div>
 			
 			<div class="container darker" *ngIf="i % 2 !== 0">
-				{{message}}
+				{{messages[messages.length - i - 1]}}
 			</div>
 		</div>
 	</div>
