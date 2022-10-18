@@ -2,8 +2,8 @@
 
 <div class="table">
     <table>
-        <tbody *ngIf="bankInfo"> 
-            <tr *ngFor="let company of bankInfo; index as i">
+        <tbody *ngIf="companies"> 
+            <tr *ngFor="let company of companies; index as i">
                 <td>{{company.ROW.CKODSOST}}</td>
                 <td>{{company.ROW.DLIKV}}</td>
                 <td>{{company.ROW.DREG}}</td>

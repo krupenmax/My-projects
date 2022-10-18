@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from "@angular/core";
-import { Observable, from, map } from "rxjs";
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from "@angular/core";
+import { Observable, Subject, from, map, takeUntil } from "rxjs";
 import { HttpService } from "./http.service";
 import { myOperator } from "./my-operator";
 import { Row } from "./row";
@@ -11,9 +11,10 @@ import { Row } from "./row";
   styleUrls: ["./bank-unp.component.scss"],
   templateUrl: "./bank-unp.component.html",
 })
-export class BankUnpComponent implements OnInit {
+export class BankUnpComponent implements OnInit, OnDestroy {
+  public unsubscribe$: Subject<void> = new Subject();
   public unpObservable: Observable<Row> = new Observable();
-  public bankInfo: Row[] = [];
+  public companies: Row[] = [];
   private UNP: string[] = [
     "491625265",
     "290954125",
@@ -29,15 +30,21 @@ export class BankUnpComponent implements OnInit {
 
   public ngOnInit(): void {
     from(this.UNP).pipe(
+      takeUntil(this.unsubscribe$),
       map(data => this.httpService.request(`grp/getData?unp=${data}&charset=UTF-8&type=json`)),
       myOperator(1000),
     ).subscribe({
       next: (data) => {
         data.subscribe(value => {
-          this.bankInfo.push(value);
+          this.companies.push(value);
           this.cdr.detectChanges();
         });
       },
     });
+  }
+
+  public ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }
