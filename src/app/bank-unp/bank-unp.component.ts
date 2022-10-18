@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from "@angular/core";
-import { Observable, Subject, buffer, from, map, takeUntil, toArray } from "rxjs";
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from "@angular/core";
+import { Subject, concatMap, from, map } from "rxjs";
 import { HttpService } from "./http.service";
 import { myOperator } from "./my-operator";
 import { Row } from "./row";
@@ -10,7 +10,7 @@ import { Row } from "./row";
   styleUrls: ["./bank-unp.component.scss"],
   templateUrl: "./bank-unp.component.html",
 })
-export class BankUnpComponent implements OnInit, OnDestroy {
+export class BankUnpComponent implements OnInit {
   public unsubscribe$: Subject<void> = new Subject();
   public companies: Row[] = [];
   private UNP: string[] = [
@@ -37,17 +37,14 @@ export class BankUnpComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     from(this.UNP).pipe(
-      takeUntil(this.unsubscribe$),
-      map(data => this.httpService.request(`grp/getData?unp=${data}&charset=UTF-8&type=json`)),
+      map(data => `grp/getData?unp=${data}&charset=UTF-8&type=json`),
       myOperator(1000),
-    ).subscribe(data => data.subscribe(value => {
-      this.companies.push(value);
+      concatMap(data => {
+        return this.httpService.request(data);
+      }),
+    ).subscribe(data => {
+      this.companies.push(data);
       this.cdr.detectChanges();
-    }));
-  }
-
-  public ngOnDestroy(): void {
-    this.unsubscribe$.next();
-    this.unsubscribe$.complete();
+    });
   }
 }

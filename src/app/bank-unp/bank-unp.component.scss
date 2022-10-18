@@ -35,29 +35,18 @@ table {
 	color: #000;	
 	z-index: 1;
 	background-color: rgba(255, 255, 255, 0.938);
-	
+	width: fit-content;
 	flex-direction: column;
-	font-size: 15px;
+	font-size: 1em;
 	padding: 10px;
 }
 
 .table td {
 	text-align: center;
-	padding: 20px;
+	padding: 15px 20px;
 }
 
 .table tr {
 	outline: solid 1px rgb(65, 65, 65);
 	outline-offset: -3px;
-}
-
-.grid-container {
-	margin: 50px;
-	width: 50%;
-	background: filter(5px);  
-	font-weight: 600;
-	font-size: 16px;
-	border: solid;
-	padding: 50px; 
-	background: #fff;
 }
