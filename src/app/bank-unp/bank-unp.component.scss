@@ -27,10 +27,7 @@ table {
 	border-radius: 10px;
 	border: solid 2px rgb(255, 255, 255);
 	box-shadow: 0px 0px 50px rgb(48, 48, 48);
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
+	display: table;
 	position: relative;
 	color: #000;	
 	z-index: 1;
@@ -46,7 +43,17 @@ table {
 	padding: 15px 20px;
 }
 
+thead td {
+	text-align: center;
+	padding: 15px 20px;
+}
+
+thead tr {
+	outline: solid 2px rgb(65, 65, 65);
+	outline-offset: -3px;
+}
+
 .table tr {
-	outline: solid 1px rgb(65, 65, 65);
+	outline: solid 2px rgb(65, 65, 65);
 	outline-offset: -3px;
 }
