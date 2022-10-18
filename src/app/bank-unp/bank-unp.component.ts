@@ -47,4 +47,8 @@ export class BankUnpComponent implements OnInit {
       this.cdr.detectChanges();
     });
   }
+
+  protected trackByFn(index: number, item: Row) {
+    return item.ROW.VUNP;
+  }
 }

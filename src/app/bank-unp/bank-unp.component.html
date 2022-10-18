@@ -3,7 +3,7 @@
 <div class="table">
     <table>
         <tbody *ngIf="companies"> 
-            <tr *ngFor="let company of companies; index as i">
+            <tr *ngFor="let company of companies; trackBy: trackByFn">
                 <td>{{company.ROW.CKODSOST}}</td>
                 <td>{{company.ROW.DLIKV}}</td>
                 <td>{{company.ROW.DREG}}</td>
