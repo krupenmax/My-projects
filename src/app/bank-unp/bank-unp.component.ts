@@ -1,6 +1,5 @@
-import { HttpClient } from "@angular/common/http";
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from "@angular/core";
-import { Observable, Subject, from, map, takeUntil } from "rxjs";
+import { Observable, Subject, buffer, from, map, takeUntil, toArray } from "rxjs";
 import { HttpService } from "./http.service";
 import { myOperator } from "./my-operator";
 import { Row } from "./row";
@@ -25,6 +24,15 @@ export class BankUnpComponent implements OnInit, OnDestroy {
     "193361610",
     "191111948",
     "193545149",
+    "491625265",
+    "290954125",
+    "490087269",
+    "691379465",
+    "200056225",
+    "291563006",
+    "193361610",
+    "191111948",
+    "193545149",
   ];
   public constructor(private httpService: HttpService, private cdr: ChangeDetectorRef) { }
 
@@ -33,14 +41,10 @@ export class BankUnpComponent implements OnInit, OnDestroy {
       takeUntil(this.unsubscribe$),
       map(data => this.httpService.request(`grp/getData?unp=${data}&charset=UTF-8&type=json`)),
       myOperator(1000),
-    ).subscribe({
-      next: (data) => {
-        data.subscribe(value => {
-          this.companies.push(value);
-          this.cdr.detectChanges();
-        });
-      },
-    });
+    ).subscribe(data => data.subscribe(value => {
+      this.companies.push(value);
+      this.cdr.detectChanges();
+    }));
   }
 
   public ngOnDestroy(): void {
