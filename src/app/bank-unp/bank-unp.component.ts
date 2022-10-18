@@ -12,7 +12,6 @@ import { Row } from "./row";
 })
 export class BankUnpComponent implements OnInit, OnDestroy {
   public unsubscribe$: Subject<void> = new Subject();
-  public unpObservable: Observable<Row> = new Observable();
   public companies: Row[] = [];
   private UNP: string[] = [
     "491625265",
