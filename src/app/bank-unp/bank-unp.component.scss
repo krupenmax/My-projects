@@ -43,11 +43,12 @@ table {
 
 .table td {
 	text-align: center;
-	padding: 10px;
+	padding: 20px;
 }
 
 .table tr {
-	outline: solid 1px;
+	outline: solid 1px rgb(65, 65, 65);
+	outline-offset: -3px;
 }
 
 .grid-container {
