@@ -19,7 +19,7 @@
 }
 
 .table {
-	padding: 50px;
+	padding: 100px;
 	overflow: auto;
 }
 
@@ -30,29 +30,26 @@ table {
 	position: relative;
 	color: #000;	
 	z-index: 1;
-	background-color: rgba(255, 255, 255, 0.938);
+	background-color: rgba(255, 255, 255, 0.9);
 	width: fit-content;
 	flex-direction: column;
 	font-size: 1em;
-	padding: 10px;
+	padding: 5px;
 }
 
 .table td {
 	text-align: center;
-	padding: 15px 20px;
+	padding: 10px;
 }
 
 thead td {
 	text-align: center;
 	padding: 15px 20px;
+	user-select: none;
 }
 
-thead tr, td{
-	outline: solid 2px rgb(65, 65, 65);
+tr, td{
+	outline: solid 2px rgb(0, 0, 0);
 	outline-offset: 0px;
 }
 
-.table tr {
-	outline: solid 2px rgb(65, 65, 65);
-	outline-offset: 0px;
-}

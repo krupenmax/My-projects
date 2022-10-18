@@ -1,0 +1,18 @@
+<div class="window">
+	<div class="header">
+		<button (click)="addMessage()">
+			Add message
+		</button>
+	</div>
+	<div class="content">
+		<div class="message" *ngFor="let message of messages; index as i">
+			<div class="container" *ngIf="i % 2 === 0">
+				{{message}}
+			</div>
+			
+			<div class="container darker" *ngIf="i % 2 !== 0">
+				{{message}}
+			</div>
+		</div>
+	</div>
+</div>
