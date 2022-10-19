@@ -1,18 +1,23 @@
 <div class="window">
-	<div class="header">
-		<button (click)="addMessage()">
-			Add message
-		</button>
-	</div>
+	<div class="header">My messanger</div>
 	<div class="content">
 		<div class="message" *ngFor="let message of messages; index as i">
-			<div class="container" *ngIf="i % 2 === 0">
+			<div class="container darker" *ngIf="myMessages.includes(message)">
 				{{message}}
 			</div>
 			
-			<div class="container darker" *ngIf="i % 2 !== 0">
+			<div class="container" *ngIf="friendMessages.includes(message)">
 				{{message}}
 			</div>
 		</div>
+	</div>
+	<div class="bottom-area">
+		<form [formGroup]="formGroup">
+			<textarea placeholder="Type your message here.." formControlName="messageInput"></textarea>
+		</form>
+		<button (click)="addMessage()">
+			Send message
+		</button>
+		<button (click)="addText()">Add friend's message</button>
 	</div>
 </div>
