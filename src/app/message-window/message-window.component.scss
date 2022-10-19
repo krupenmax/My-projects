@@ -31,6 +31,7 @@
 	background-color: rgba(62, 130, 218, 0.342);
 }
 
+
 .bottom-area {
 	display: flex;
 	justify-content: center;
@@ -51,7 +52,7 @@
 	resize: none;
 	outline: none;
 	font-weight: 600;
-	text-align: center;
+	text-align: right;
 	height: 100%;
 }
 
@@ -71,7 +72,7 @@ form {
 }
 
 .message {
-	position: relative	;
+	position: relative;
 	bottom: 0;
 	left: 0;
 }
@@ -131,7 +132,7 @@ button:active {
 	background-color: #f1f1f1;
 	border-radius: 5px;
 	padding: 10px;
-	margin: 10px 0;
+	margin: 3px 0;
 }
   
 /* Darker chat container */
@@ -141,4 +142,9 @@ button:active {
 	text-align: right;
 }
   
+  
+
+textarea::-webkit-scrollbar {
+	display: none;
+}
   
