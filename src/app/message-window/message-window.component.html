@@ -15,9 +15,11 @@
 		<form [formGroup]="formGroup">
 			<textarea placeholder="Type your message here.." formControlName="messageInput"></textarea>
 		</form>
-		<button (click)="addMessage()">
-			Send message
-		</button>
-		<button (click)="addText()">Add friend's message</button>
+			<!-- <button (click)="addText()">
+				Add friend's message
+			</button> -->
+			<button (click)="addMessage()" type="submit ">
+				Send message
+			</button>
 	</div>
 </div>
