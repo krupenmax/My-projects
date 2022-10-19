@@ -10,7 +10,7 @@ export class MessageWindowComponent {
   public constructor() { }
 
   public addMessage(): void {
-    this.messages.push(`This message was added at ${this.messages.length + 1} place`);
+    this.messages.unshift(`This message was added at ${this.messages.length + 1} place`);
   }
 
 }
